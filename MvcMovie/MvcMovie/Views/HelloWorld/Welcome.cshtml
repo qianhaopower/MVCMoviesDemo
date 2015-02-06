@@ -9,4 +9,193 @@
 {
     <li>@ViewBag.Message</li>
 }
+
+
+    <!-- Single statement blocks  -->
+    @{ var total = 0; }
+    @{ var myMessage = "My message from Razor"; }
+
+    <!-- Inline expressions -->
+    <p>The value of your account is: @total </p>
+    <p>The value of myMessage is: @myMessage</p>
+
+    <!-- Multi-statement block -->
+    @{
+        var greeting = "Welcome to our site!";
+        var weekDay = DateTime.Now.DayOfWeek;
+        var greetingMessage = greeting + " Today is: " + weekDay;
+    }
+    <p>The greeting is: @greetingMessage</p>
+
+
+
+
 </ul>
+<table border="1">
+    <tr>
+        <td>Requested URL</td>
+        <td>Relative Path</td>
+        <td>Full Path</td>
+        <td>HTTP Request Type</td>
+    </tr>
+    <tr>
+        <td>@Request.Url</td>
+        <td>@Request.FilePath</td>
+        <td>@Request.MapPath(Request.FilePath)</td>
+        <td>@Request.RequestType</td>
+    </tr>
+</table>
+
+
+@{
+    var result = "";
+    var result3 = "";
+    if (IsPost)
+    {
+        result = "This page was posted using the Submit button.";
+        result3 = "This page was posted using the Submit button.";
+    }
+    else
+    {
+        result = "This was the first request for this page.";
+        result3 = "This was the first request for this page.";
+    }
+}
+
+<form method="POST" action="">
+    <input type="Submit" name="Submit" value="Submit" />
+    <p>@result</p>
+</form>
+<p>@result3</p>
+
+
+@{
+    
+    var totalMessage = "";
+    if (IsPost)
+    {
+
+        // Retrieve the numbers that the user entered.
+        var num1 = Request["text1"];
+        var num2 = Request["text2"];
+
+        // Convert the entered strings into integers numbers and add.
+        total = num1.AsInt() + num2.AsInt();
+        totalMessage = "Total = " + total;
+    }
+}
+
+<p>Enter two whole numbers and then click <strong>Add</strong>.</p>
+<form action="" method="post">
+    <p>
+        <label for="text1">First Number:</label>
+        <input type="text" name="text1" />
+    </p>
+    <p>
+        <label for="text2">Second Number:</label>
+        <input type="text" name="text2" />
+    </p>
+    <p><input type="submit" value="Add" /></p>
+</form>
+
+<p>@totalMessage</p>
+
+
+@if (IsPost)
+{
+    // This line has all content between matched <p> tags.
+   <p>Hello, the time is @DateTime.Now and this page is a postback!</p>
+}
+else
+{
+    // All content between matched tags, followed by server code.
+    <p>Hello <em>stranger</em>, today is: <br /> </p>  @DateTime.Now
+}
+
+
+@if (IsPost)
+{
+    // Plain text followed by an unmatched HTML tag and server code.
+    @: The time is: <br /> @DateTime.Now
+    <br />
+    // Server code and then plain text, matched tags, and more text.
+    @DateTime.Now @:is the <em>current</em> time.
+}
+
+
+@{
+    var dataFilePath = "~/dataFile.txt";
+}
+
+@{
+    var myImagesFolder = "~/images";
+    var myStyleSheet = "~/styles/StyleSheet.css";
+}
+<!-- Displays a physical path C:\Websites\MyWebSite\datafile.txt  -->
+<p>@Server.MapPath(dataFilePath)</p>
+
+<a href="~/HelloWorld/">Home</a>
+<img src="~/images/MyImages.png" />
+
+
+@{
+    var path = Request.FilePath;
+}
+______________________<br>
+@{
+    // Access the page's Request object to retrieve the Url.
+    var pageUrl = this.Request.Url;
+}
+<a href="@pageUrl">My page</a>
+
+@{
+
+    var fileContents = "";
+    var physicalPath = Server.MapPath(dataFilePath);
+    var userMessage = "Hello world, the time is " + DateTime.Now;
+    var userErrMsg = "";
+    var errMsg = "";
+
+    if (IsPost)
+    {
+        // When the user clicks the "Open File" button and posts
+        // the page, try to open the created file for reading.
+        try
+        {
+            // This code fails because of faulty path to the file.
+            fileContents = File.ReadAllText(@"c:\batafile.txt");
+
+            // This code works. To eliminate error on page,
+            // comment the above line of code and uncomment this one.
+            //fileContents = File.ReadAllText(physicalPath);
+        }
+        catch (FileNotFoundException ex)
+        {
+            // You can use the exception object for debugging, logging, etc.
+            errMsg = ex.Message;
+            // Create a friendly error message for users.
+            userErrMsg = "A file could not be opened, please contact "
+                + "your system administrator.";
+        }
+        catch (DirectoryNotFoundException ex)
+        {
+            // Similar to previous exception.
+            errMsg = ex.Message;
+            userErrMsg = "A directory was not found, please contact "
+                + "your system administrator.";
+        }
+    }
+    else
+    {
+        // The first time the page is requested, create the text file.
+        File.WriteAllText(physicalPath, userMessage);
+    }
+}
+
+<form method="POST" action="">
+    <input type="Submit" name="Submit" value="Open File" />
+</form>
+
+<p>@fileContents</p>
+<p>@userErrMsg</p>
+
