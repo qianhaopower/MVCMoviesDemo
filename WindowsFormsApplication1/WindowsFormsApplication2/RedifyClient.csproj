@@ -94,9 +94,7 @@
     <None Include="Service References\CloudService\RedPill.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CloudService\RedPill1.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Service References\CloudService\RedPill1.wsdl" />
     <None Include="Service References\CloudService\RedPill2.xsd">
       <SubType>Designer</SubType>
     </None>

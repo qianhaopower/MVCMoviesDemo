@@ -51,15 +51,15 @@
             this.numFibo = new System.Windows.Forms.NumericUpDown();
             this.btnFibb = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnReversefile = new System.Windows.Forms.Button();
+            this.lbltime2 = new System.Windows.Forms.Label();
+            this.lblTime1 = new System.Windows.Forms.Label();
             this.textRevesedMine = new System.Windows.Forms.TextBox();
             this.txtReversed = new System.Windows.Forms.TextBox();
             this.txtOriginal = new System.Windows.Forms.TextBox();
             this.btnReverseText = new System.Windows.Forms.Button();
             this.btnDisplayMyToken = new System.Windows.Forms.Button();
             this.lblResult = new System.Windows.Forms.Label();
-            this.lblTime1 = new System.Windows.Forms.Label();
-            this.lbltime2 = new System.Windows.Forms.Label();
-            this.btnReversefile = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -303,6 +303,34 @@
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "Reverse";
             // 
+            // btnReversefile
+            // 
+            this.btnReversefile.Location = new System.Drawing.Point(149, 6);
+            this.btnReversefile.Name = "btnReversefile";
+            this.btnReversefile.Size = new System.Drawing.Size(88, 23);
+            this.btnReversefile.TabIndex = 22;
+            this.btnReversefile.Text = "Reverse File";
+            this.btnReversefile.UseVisualStyleBackColor = true;
+            this.btnReversefile.Click += new System.EventHandler(this.btnReversefile_Click);
+            // 
+            // lbltime2
+            // 
+            this.lbltime2.AutoSize = true;
+            this.lbltime2.Location = new System.Drawing.Point(457, 287);
+            this.lbltime2.Name = "lbltime2";
+            this.lbltime2.Size = new System.Drawing.Size(34, 13);
+            this.lbltime2.TabIndex = 21;
+            this.lbltime2.Text = "TIme:";
+            // 
+            // lblTime1
+            // 
+            this.lblTime1.AutoSize = true;
+            this.lblTime1.Location = new System.Drawing.Point(457, 16);
+            this.lblTime1.Name = "lblTime1";
+            this.lblTime1.Size = new System.Drawing.Size(30, 13);
+            this.lblTime1.TabIndex = 20;
+            this.lblTime1.Text = "Time";
+            // 
             // textRevesedMine
             // 
             this.textRevesedMine.Location = new System.Drawing.Point(449, 303);
@@ -361,34 +389,6 @@
             this.lblResult.TabIndex = 20;
             this.lblResult.Text = "Result";
             // 
-            // lblTime1
-            // 
-            this.lblTime1.AutoSize = true;
-            this.lblTime1.Location = new System.Drawing.Point(457, 16);
-            this.lblTime1.Name = "lblTime1";
-            this.lblTime1.Size = new System.Drawing.Size(30, 13);
-            this.lblTime1.TabIndex = 20;
-            this.lblTime1.Text = "Time";
-            // 
-            // lbltime2
-            // 
-            this.lbltime2.AutoSize = true;
-            this.lbltime2.Location = new System.Drawing.Point(457, 287);
-            this.lbltime2.Name = "lbltime2";
-            this.lbltime2.Size = new System.Drawing.Size(34, 13);
-            this.lbltime2.TabIndex = 21;
-            this.lbltime2.Text = "TIme:";
-            // 
-            // btnReversefile
-            // 
-            this.btnReversefile.Location = new System.Drawing.Point(149, 6);
-            this.btnReversefile.Name = "btnReversefile";
-            this.btnReversefile.Size = new System.Drawing.Size(88, 23);
-            this.btnReversefile.TabIndex = 22;
-            this.btnReversefile.Text = "Reverse File";
-            this.btnReversefile.UseVisualStyleBackColor = true;
-            this.btnReversefile.Click += new System.EventHandler(this.btnReversefile_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -403,7 +403,7 @@
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.btn_DisplayToken);
             this.Name = "TestForm";
-            this.Text = "Form1";
+            this.Text = "RedPillTestForm";
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();

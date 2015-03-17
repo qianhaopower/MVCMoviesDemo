@@ -33,14 +33,14 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private MyRedPill.RedPillClient _myClient;
-        private MyRedPill.RedPillClient MyClient
+        private CloudService.RedPillClient _myClient;
+        private CloudService.RedPillClient MyClient
         {
             get
             {
                 if (_myClient == null)
                 {
-                    _myClient = new MyRedPill.RedPillClient();
+                    _myClient = new CloudService.RedPillClient();
                    
                 }
                 return _myClient;

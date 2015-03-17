@@ -24,10 +24,10 @@
   <Metadata>
     <MetadataFile FileName="RedPill.xsd" MetadataType="Schema" ID="a23a901a-b3d4-42f8-8fd3-337007bd244c" SourceId="1" SourceUrl="http://myredpill.cloudapp.net/RedPill.svc?xsd=xsd1" />
     <MetadataFile FileName="RedPill.wsdl" MetadataType="Wsdl" ID="dfa33be8-8d73-41c3-b070-79b81ebb0ff6" SourceId="1" SourceUrl="http://myredpill.cloudapp.net/RedPill.svc?wsdl" />
-    <MetadataFile FileName="RedPill1.xsd" MetadataType="Schema" ID="37164ebe-31a2-47ba-ac6a-0d95fb8e61f2" SourceId="1" SourceUrl="http://myredpill.cloudapp.net/RedPill.svc?xsd=xsd3" />
     <MetadataFile FileName="RedPill2.xsd" MetadataType="Schema" ID="6c421740-8745-4d52-a7cb-57acdff3fe7e" SourceId="1" SourceUrl="http://myredpill.cloudapp.net/RedPill.svc?xsd=xsd0" />
     <MetadataFile FileName="RedPill3.xsd" MetadataType="Schema" ID="1314a56c-8778-46a3-b446-97ba4967ee48" SourceId="1" SourceUrl="http://myredpill.cloudapp.net/RedPill.svc?xsd=xsd2" />
     <MetadataFile FileName="RedPill.disco" MetadataType="Disco" ID="447eff4c-c7e5-4d85-b027-cab17c4f4a8f" SourceId="1" SourceUrl="http://myredpill.cloudapp.net/RedPill.svc?disco" />
+    <MetadataFile FileName="RedPill1.wsdl" MetadataType="Wsdl" ID="cf841bfa-5368-440a-9ad9-f7ce6c8d30b8" SourceId="1" SourceUrl="http://myredpill.cloudapp.net/RedPill.svc?wsdl=wsdl0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
