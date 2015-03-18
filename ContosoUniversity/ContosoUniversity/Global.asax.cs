@@ -19,9 +19,9 @@ namespace ContosoUniversity
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var item = new SchoolInterceptorTransientErrors();
-            DbInterception.Add(item);
-            DbInterception.Add(new SchoolInterceptorLogging());
+            //var item = new SchoolInterceptorTransientErrors();
+            //DbInterception.Add(item);
+            //DbInterception.Add(new SchoolInterceptorLogging());
         }
     }
 }
