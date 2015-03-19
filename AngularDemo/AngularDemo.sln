@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularDemo", "AngularDemo\AngularDemo.csproj", "{64418372-83EA-454C-B912-843CB3298959}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularPracticeDemo", "AngularPracticeDemo\AngularPracticeDemo.csproj", "{9CA820B8-5419-4123-A94F-C5F926C9DCB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{64418372-83EA-454C-B912-843CB3298959}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64418372-83EA-454C-B912-843CB3298959}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64418372-83EA-454C-B912-843CB3298959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CA820B8-5419-4123-A94F-C5F926C9DCB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CA820B8-5419-4123-A94F-C5F926C9DCB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CA820B8-5419-4123-A94F-C5F926C9DCB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CA820B8-5419-4123-A94F-C5F926C9DCB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
