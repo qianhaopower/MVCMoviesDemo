@@ -169,3 +169,234 @@ angular.module('scopeExample', [])
     $scope.names = ['Igor', 'Misko', 'Vojta'];
 
 }]);
+
+
+angular.module('expressionExample', [])
+.controller('ExampleController', ['$scope', function ($scope) {
+    var exprs = $scope.exprs = [];
+    $scope.expr = '3*10|currency';
+    $scope.addExp = function (expr) {
+        exprs.push(expr);
+    };
+
+    $scope.removeExp = function (index) {
+        exprs.splice(index, 1);
+    };
+}]);
+
+angular.module('expressionExample', [])
+.controller('ExampleController', ['$window', '$scope', function ($window, $scope) {
+    $scope.name = 'World';
+
+    $scope.greet = function () {
+        $window.alert('Hello ' + $scope.name);
+    };
+}]);
+
+angular.module('eventExampleApp', []).
+controller('EventController', ['$scope', function ($scope) {
+    /*
+     * expose the event object to the scope
+     */
+    $scope.clickMe = function (clickEvent) {
+        $scope.clickEvent = simpleKeys(clickEvent);
+        console.log(clickEvent);
+    };
+
+    /*
+     * return a copy of an object with only non-object keys
+     * we need this to avoid circular references
+     */
+    function simpleKeys(original) {
+        return Object.keys(original).reduce(function (obj, key) {
+            obj[key] = typeof original[key] === 'object' ? '{ ... }' : original[key];
+            return obj;
+        }, {});
+    }
+
+
+}]);
+
+//??????????????? who defined fialterFitler?
+angular.module('FilterInControllerModule', []).
+controller('FilterController', ['filterFilter', function (fialterFilter) {
+    this.array = [
+      { name: 'Tobias' },
+      { name: 'Jeff' },
+      { name: 'Brian' },
+      { name: 'Igor' },
+      { name: 'James' },
+      { name: 'Brad' }
+    ];
+    this.filteredArray = fialterFilter(this.array, 'a');
+}]);
+
+
+angular.module('myReverseFilterApp', [])
+.filter('reverse', function () {
+    return function (input, uppercase) {
+        input = input || '';
+        var out = "";
+        for (var i = 0; i < input.length; i++) {
+            out = input.charAt(i) + out;
+        }
+        // conditional based on optional argument
+        if (uppercase) {
+            out = out.toUpperCase();
+        }
+        return out;
+    };
+})
+.controller('MyController', ['$scope', function ($scope) {
+    $scope.greeting = 'hello';
+}]);
+
+angular.module('formExample', [])
+    .controller('ExampleController', ['$scope', function ($scope) {
+        $scope.master = {};
+
+        $scope.update = function (user) {
+            $scope.master = angular.copy(user);
+        };
+
+        $scope.reset = function () {
+            $scope.user = angular.copy($scope.master);
+        };
+
+        $scope.reset();
+    }]);
+
+
+//css color is not showing?
+angular.module('formExample', [])
+   .controller('ExampleController2', ['$scope', function ($scope) {
+       $scope.master = {};
+
+       $scope.update = function (user) {
+           $scope.master = angular.copy(user);
+       };
+
+       $scope.reset = function () {
+           $scope.user = angular.copy($scope.master);
+       };
+
+       $scope.reset();
+   }]);
+
+angular.module('formExample2', [])
+.controller('ExampleController3', ['$scope', function ($scope) {
+    $scope.master = {};
+
+    $scope.update = function (user) {
+        $scope.master = angular.copy(user);
+    };
+
+    $scope.reset = function (form) {
+        if (form) {
+            form.$setPristine();
+            form.$setUntouched();
+        }
+        $scope.user = angular.copy($scope.master);
+    };
+
+    $scope.reset();
+}]);
+
+
+
+//why the error message is not showing?
+var app = angular.module('form-example1', []);
+
+var INTEGER_REGEXP = /^\-?\d+$/;
+app.directive('integer', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            ctrl.$validators.integer = function (modelValue, viewValue) {
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty models to be valid
+                    return true;
+                }
+
+                if (INTEGER_REGEXP.test(viewValue)) {
+                    // it is valid
+                    return true;
+                }
+
+                // it is invalid
+                return false;
+            };
+        }
+    };
+});
+
+app.directive('username', function ($q, $timeout) {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            var usernames = ['Jim', 'John', 'Jill', 'Jackie'];
+
+            ctrl.$asyncValidators.username = function (modelValue, viewValue) {
+
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty model valid
+                    return $q.when();
+                }
+
+                var def = $q.defer();
+
+                $timeout(function () {
+                    // Mock a delayed response
+                    if (usernames.indexOf(modelValue) === -1) {
+                        // The username is available
+                        def.resolve();
+                    } else {
+                        def.reject();
+                    }
+
+                }, 2000);
+
+                return def.promise;
+            };
+        }
+    };
+});
+
+
+
+angular.module('drag', []).
+directive('draggable', function ($document) {
+    return function (scope, element, attr) {
+        var startX = 0, startY = 0, x = 0, y = 0;
+        element.css({
+            position: 'relative',
+            border: '1px solid red',
+            backgroundColor: 'lightgrey',
+            cursor: 'pointer',
+            display: 'block',
+            width: '65px'
+        });
+        element.on('mousedown', function (event) {
+            // Prevent default dragging of selected content
+            event.preventDefault();
+            startX = event.screenX - x;
+            startY = event.screenY - y;
+            $document.on('mousemove', mousemove);
+            $document.on('mouseup', mouseup);
+        });
+
+        function mousemove(event) {
+            y = event.screenY - startY;
+            x = event.screenX - startX;
+            element.css({
+                top: y + 'px',
+                left: x + 'px'
+            });
+        }
+
+        function mouseup() {
+            $document.off('mousemove', mousemove);
+            $document.off('mouseup', mouseup);
+        }
+    };
+});

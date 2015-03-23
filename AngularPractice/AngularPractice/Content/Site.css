@@ -48,3 +48,16 @@ div.spicy div {
   border: 1px solid red;
   margin: 3px;
 }
+
+
+  .css-form input.ng-invalid {
+    background-color: #FA787E;
+  }
+
+  .css-form input.ng-valid {
+    background-color: #78FA89;
+  }
+.css-form input.ng-touched {
+    background-color: #FA787E;
+}
+
