@@ -1,9 +1,6 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="AngularPractice._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-   
-     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-     <script src="Scripts/Application/App.js" type="text/javascript"></script>
 
 
 <%--    <div ng-app ng-init="qty=1;cost=2">
@@ -236,8 +233,11 @@
   </form>
 </div>--%>
 
+<%--    <div ng-app="form-example1">
 
-  <%--<div>
+
+  <form name="form" class="css-form" novalidate>
+  <div>
     Size (integer 0 - 10):
     <input type="number" ng-model="size" name="size"
            min="0" max="10" integer />{{size}}<br />
@@ -251,14 +251,52 @@
     <input type="text" ng-model="name" name="name" username />{{name}}<br />
     <span ng-show="form.name.$pending.username">Checking if this name is available...</span>
     <span ng-show="form.name.$error.username">This username is already taken!</span>
-  </div>--%>
-    
-    <div ng-app = "drag">
-    <span draggable>Drag ME</span>
-     </div>
+  </div>
+</form>
+
+        </div>--%>
 
     
-   
+   <%-- <div ng-app = "drag">
+    <span draggable>Drag ME</span>
+     </div>--%>
+
+    
+<%--   <div ng-app="docsTemplateUrlDirective" ng-controller="Controller">
+  <div my-customer></div>
+</div>--%> 
+
+   <%-- <div    ng-app="docsIsolateScopeDirective"   ng-controller="Controller">
+  <my-customer info="naomia"></my-customer>
+  <hr>
+  <my-customer info="igor"></my-customer>
+</div--%>
+
+
+<%--    <div  ng-app="docsTimeDirective" ng-controller="Controller">
+  Date format: <input ng-model="format"> <hr/>
+  Current time is: <span my-current-time="format"></span>
+</div>--%>
+
+
+<%--    <div  ng-app="Animation" ng-init="checked=false">
+  <label>
+    <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> Is Visible...
+  </label>
+  <div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
+    Visible...
+  </div>
+</div>
+--%>
+    <div  ng-app="Animation" >
+  <label>
+    <p>
+  <input type="button" value="set" ng-click="myCssVar='css-class'">
+  <input type="button" value="clear" ng-click="myCssVar=''">
+  <br>
+  <span ng-class="myCssVar">CSS-Animated Text</span>
+</p>
+</div>
 
 </asp:Content>
 
