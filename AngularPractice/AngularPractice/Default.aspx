@@ -266,11 +266,11 @@
   <div my-customer></div>
 </div>--%> 
 
-   <%-- <div    ng-app="docsIsolateScopeDirective"   ng-controller="Controller">
+<%-- -<div    ng-app="docsIsolateScopeDirective"   ng-controller="Controller">
   <my-customer info="naomia"></my-customer>
   <hr>
   <my-customer info="igor"></my-customer>
-</div--%>
+</div>--%>
 
 
 <%--    <div  ng-app="docsTimeDirective" ng-controller="Controller">
@@ -288,7 +288,7 @@
   </div>
 </div>
 --%>
-    <div  ng-app="Animation" >
+<%--    <div  ng-app="Animation" >
   <label>
     <p>
   <input type="button" value="set" ng-click="myCssVar='css-class'">
@@ -296,7 +296,30 @@
   <br>
   <span ng-class="myCssVar">CSS-Animated Text</span>
 </p>
+</div>--%>
+
+    <div ng-app="httpExample" ng-controller="FetchController">
+  <select ng-model="method">
+    <option>GET</option>
+    <option>JSONP</option>
+  </select>
+  <input type="text" ng-model="url" size="80"/>
+  <button type="button" id="fetchbtn" ng-click="fetch()">fetch</button><br>
+  <button type="button" id="samplegetbtn" ng-click="updateModel('GET', 'http-hello.html')">Sample GET</button>
+  <button type="button" id="samplejsonpbtn"
+    ng-click="updateModel('JSONP',
+                  'https://angularjs.org/greet.php?callback=JSON_CALLBACK&name=Super%20Hero')">
+    Sample JSONP
+  </button>
+  <button id="invalidjsonpbtn"
+    ng-click="updateModel('JSONP', 'https://angularjs.org/doesntexist&callback=JSON_CALLBACK')">
+      Invalid JSONP
+    </button>
+  <pre>http status code: {{status}}</pre>
+  <pre>http response data: {{data}}</pre>
 </div>
+
+
 
 </asp:Content>
 

@@ -166,6 +166,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Movie\Index.html" />
+    <Content Include="Movie\movie-add.html" />
+    <Content Include="Movie\movie-edit.html" />
+    <Content Include="Movie\movie-view.html" />
+    <Content Include="Movie\movies.html" />
+    <Content Include="Movie\_form.html" />
     <Content Include="my-customer-iso.html" />
     <Content Include="my-customer.html" />
     <Content Include="packages.config" />

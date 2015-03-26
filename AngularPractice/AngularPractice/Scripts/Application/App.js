@@ -442,7 +442,10 @@ angular.module('docsIsolateScopeDirective', [])
         scope: {
             customerInfo: '=info'
         },
-        templateUrl: 'my-customer-iso.html'
+        templateUrl: 'my-customer-iso.html',
+        link: function () {
+
+        }
     };
 });
 
@@ -482,3 +485,105 @@ angular.module('docsTimeDirective', [])
 }]);
 
 angular.module('Animation', ["ngAnimate"]);
+
+
+angular.module('httpExample', [])
+.controller('FetchController', ['$scope', '$http', '$templateCache',
+  function ($scope, $http, $templateCache) {
+      $scope.method = 'GET';
+      $scope.url = 'http-hello.html';
+
+      $scope.fetch = function () {
+          $scope.code = null;
+          $scope.response = null;
+
+          $http({ method: $scope.method, url: $scope.url, cache: $templateCache }).
+            success(function (data, status) {
+                $scope.status = status;
+                $scope.data = data;
+            }).
+            error(function (data, status) {
+                $scope.data = data || "Request failed";
+                $scope.status = status;
+            });
+      };
+
+      $scope.updateModel = function (method, url) {
+          $scope.method = method;
+          $scope.url = url;
+      };
+  }]);
+
+
+angular.module('movieApp', ['ui.router', 'ngResource', 'movieApp.controllers', 'movieApp.services']);
+
+angular.module('movieApp.services', []).factory('Movie', function ($resource) {
+    return $resource('http://movieapp-sitepointdemos.rhcloud.com/api/movies/:id', { id: '@_id' }, {
+        update: {
+            method: 'PUT'
+        }
+    });
+}).service('popupService', function ($window) {
+    this.showPopup = function (message) {
+        return $window.confirm(message);
+    }
+});
+
+angular.module('movieApp').config(function ($stateProvider) {
+    $stateProvider.state('movies', { // state for showing all movies
+        url: '/movies',
+        templateUrl: 'movie/movies.html',
+        controller: 'MovieListController'
+    }).state('viewMovie', { //state for showing single movie
+        url: '/movies/:id/view',
+        templateUrl: 'movie/movie-view.html',
+        controller: 'MovieViewController'
+    }).state('newMovie', { //state for adding a new movie
+        url: '/movies/new',
+        templateUrl: 'movie/movie-add.html',
+        controller: 'MovieCreateController'
+    }).state('editMovie', { //state for updating a movie
+        url: '/movies/:id/edit',
+        templateUrl: 'movie/movie-edit.html',
+        controller: 'MovieEditController'
+    });
+}).run(function ($state) {
+    $state.go('movies'); //make a transition to movies state when app starts
+});
+
+
+
+
+angular.module('movieApp.controllers', []).controller('MovieListController', function ($scope, $state, popupService, $window, Movie) {
+    $scope.movies = Movie.query(); //fetch all movies. Issues a GET to /api/movies
+
+    $scope.deleteMovie = function (movie) { // Delete a movie. Issues a DELETE to /api/movies/:id
+        if (popupService.showPopup('Really delete this?')) {
+            movie.$delete(function () {
+                $window.location.href = ''; //redirect to home
+            });
+        }
+    };
+}).controller('MovieViewController', function ($scope, $stateParams, Movie) {
+    $scope.movie = Movie.get({ id: $stateParams.id }); //Get a single movie.Issues a GET to /api/movies/:id
+}).controller('MovieCreateController', function ($scope, $state, $stateParams, Movie) {
+    $scope.movie = new Movie();  //create new movie instance. Properties will be set via ng-model on UI
+
+    $scope.addMovie = function () { //create a new movie. Issues a POST to /api/movies
+        $scope.movie.$save(function () {
+            $state.go('movies'); // on success go back to home i.e. movies state.
+        });
+    };
+}).controller('MovieEditController', function ($scope, $state, $stateParams, Movie) {
+    $scope.updateMovie = function () { //Update the edited movie. Issues a PUT to /api/movies/:id
+        $scope.movie.$update(function () {
+            $state.go('movies'); // on success go back to home i.e. movies state.
+        });
+    };
+
+    $scope.loadMovie = function () { //Issues a GET request to /api/movies/:id to get a movie to update
+        $scope.movie = Movie.get({ id: $stateParams.id });
+    };
+
+    $scope.loadMovie(); // Load a movie which can be edited on UI
+});
